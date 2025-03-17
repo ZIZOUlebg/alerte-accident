@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="L (5).png" />
+    <link rel="stylesheet" href="code.css" />
+
+    <title>alerte accident</title>
+  </head>
+  <body>
+    <div class="form-actions">
+        <button class="action-button print-button" onclick="window.print()">
+          <span class="icon">🖨️</span> Imprimer
+        </button>
+        <button class="action-button pdf-button" onclick="generatePDF()">
+          <span class="icon">📥</span> Télécharger PDF
+        </button>
+      </div>
+    <form class="formulaire-impression">
+    <div class="formultaires">
+      <div class="header">
+        
+        <div class="header">
+           
+           
+        </div>
+        
+        <!-- Boutons d'action -->
+       <!-- Ajoutez cette section avant votre formulaire -->
+
+  
+  <!-- Votre formulaire commence ici -->
+  <form class="your-form-class">
+    <!-- Contenu du formulaire -->
+  </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Récupérer les données du formulaire
+    const formData = new FormData(document.querySelector('form'));
+    let y = 20;
+    
+    // Titre
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Constat d'accident", 105, y, null, null, "center");
+    y += 15;
+    
+    // Contenu du formulaire
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    
+    for (let [key, value] of formData.entries()) {
+      doc.text(`${key}: ${value}`, 20, y);
+      y += 10;
+    }
+    
+    // Sauvegarder le PDF
+    doc.save("constat-accident.pdf");
+  }
+</script>
+<script>
+    function toggleDiv(id) {
+      var div = document.getElementById(id);
+      if (div.style.display === "none") {
+        div.style.display = "block";
+      } else {
+        div.style.display = "none";
+      }
+    }
+    </script>
+        <div id="maDiv" >
+        <form id="constat-form">
+            <div class="form-container" id="maDiv">
+                
+                <div class="form-section top">
+                    <div>
+                        <div class="section-title">
+                            <span class="section-number">1</span> Date de l'accident
+                        </div>
+                        <div class="form-field">
+                            <input type="date" name="accident_date">
+                        </div>
+                        <div class="form-field">
+                            <label>Heure</label>
+                            <input type="time" name="accident_time">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="section-title">
+                            <span class="section-number">2</span> Lieu
+                        </div>
+                        <div class="form-field">
+                            <input type="text" name="accident_location" placeholder="Adresse complète">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="section-title">
+                            <span class="section-number">3</span> Blessés
+                        </div>
+                        <div class="form-field">
+                            <label>
+                                <input type="checkbox" name="has_injuries"> Oui
+                            </label>
+                            <label>
+                                <input type="checkbox" name="no_injuries"> Non
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="section-title">
+                            <span class="section-number">4</span> Dégâts matériels
+                        </div>
+                        <div class="form-field">
+                            <label>Aux véhicules A et B:</label>
+                            <label>
+                                <input type="checkbox" name="damage_ab_yes"> Oui
+                            </label>
+                            <label>
+                                <input type="checkbox" name="damage_ab_no"> Non
+                            </label>
+                        </div>
+                        <div class="form-field">
+                            <label>Autres véhicules:</label>
+                            <label>
+                                <input type="checkbox" name="damage_other_yes"> Oui
+                            </label>
+                            <label>
+                                <input type="checkbox" name="damage_other_no"> Non
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="section-title">
+                            <span class="section-number">5</span> Témoins
+                        </div>
+                        <div class="form-field">
+                            <textarea name="witnesses" placeholder="Noms, adresses et tél. (à souligner s'il s'agit d'un passager de A ou B)"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section vehicle-a">
+                    <div class="section-title">VEHICULE A</div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">6</span> Société d'Assurances
+                        </div>
+                        <label>Véhicule assuré par:</label>
+                        <input type="text" name="a_insurance_company">
+                        <label>Contrat d'Assurance N°:</label>
+                        <input type="text" name="a_insurance_contract">
+                        <label>Agence:</label>
+                        <input type="text" name="a_insurance_agency">
+                        <label>Attestation valable:</label>
+                        <input type="text" name="a_insurance_validity">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">7</span> Identité du Conducteur
+                        </div>
+                        <label>Nom:</label>
+                        <input type="text" name="a_driver_name">
+                        <label>Prénom:</label>
+                        <input type="text" name="a_driver_firstname">
+                        <label>Adresse:</label>
+                        <input type="text" name="a_driver_address">
+                        <label>Permis de conduire N°:</label>
+                        <input type="text" name="a_driver_license">
+                        <label>Délivré le:</label>
+                        <input type="date" name="a_license_date">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">8</span> Assuré
+                        </div>
+                        <label>Nom:</label>
+                        <input type="text" name="a_insured_name">
+                        <label>Prénom:</label>
+                        <input type="text" name="a_insured_firstname">
+                        <label>Adresse:</label>
+                        <input type="text" name="a_insured_address">
+                        <label>Tél:</label>
+                        <input type="tel" name="a_insured_phone">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">9</span> Identité du Véhicule
+                        </div>
+                        <label>Marque, Type:</label>
+                        <input type="text" name="a_vehicle_make">
+                        <label>N° d'immatriculation:</label>
+                        <input type="text" name="a_vehicle_reg">
+                        <label>Sens suivi:</label>
+                        <input type="text" name="a_vehicle_direction">
+                        <label>Venant de:</label>
+                        <input type="text" name="a_vehicle_from">
+                        <label>Allant à:</label>
+                        <input type="text" name="a_vehicle_to">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">10</span> Indiquer par une flèche le point de choc initial
+                        </div>
+                        <div class="vehicle-diagram">
+                            <div class="diagram-container">
+                                <img src="/api/placeholder/80/60" alt="Véhicule A schéma">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">11</span> Dégâts apparents
+                        </div>
+                        <textarea name="a_visible_damage"></textarea>
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">14</span> Observations
+                        </div>
+                        <textarea name="a_observations"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section vehicle-b">
+                    <div class="section-title">VEHICULE B</div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">6</span> Société d'Assurances
+                        </div>
+                        <label>Véhicule assuré par:</label>
+                        <input type="text" name="b_insurance_company">
+                        <label>Contrat d'Assurance N°:</label>
+                        <input type="text" name="b_insurance_contract">
+                        <label>Agence:</label>
+                        <input type="text" name="b_insurance_agency">
+                        <label>Attestation valable:</label>
+                        <input type="text" name="b_insurance_validity">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">7</span> Identité du Conducteur
+                        </div>
+                        <label>Nom:</label>
+                        <input type="text" name="b_driver_name">
+                        <label>Prénom:</label>
+                        <input type="text" name="b_driver_firstname">
+                        <label>Adresse:</label>
+                        <input type="text" name="b_driver_address">
+                        <label>Permis de conduire N°:</label>
+                        <input type="text" name="b_driver_license">
+                        <label>Délivré le:</label>
+                        <input type="date" name="b_license_date">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">8</span> Assuré
+                        </div>
+                        <label>Nom:</label>
+                        <input type="text" name="b_insured_name">
+                        <label>Prénom:</label>
+                        <input type="text" name="b_insured_firstname">
+                        <label>Adresse:</label>
+                        <input type="text" name="b_insured_address">
+                        <label>Tél:</label>
+                        <input type="tel" name="b_insured_phone">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">9</span> Identité du Véhicule
+                        </div>
+                        <label>Marque, Type:</label>
+                        <input type="text" name="b_vehicle_make">
+                        <label>N° d'immatriculation:</label>
+                        <input type="text" name="b_vehicle_reg">
+                        <label>Sens suivi:</label>
+                        <input type="text" name="b_vehicle_direction">
+                        <label>Venant de:</label>
+                        <input type="text" name="b_vehicle_from">
+                        <label>Allant à:</label>
+                        <input type="text" name="b_vehicle_to">
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">10</span> Indiquer par une flèche le point de choc initial
+                        </div>
+                        <div class="vehicle-diagram">
+                            <div class="diagram-container">
+                                <img src="/api/placeholder/80/60" alt="Véhicule B schéma">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">11</span> Dégâts apparents
+                        </div>
+                        <textarea name="b_visible_damage"></textarea>
+                    </div>
+                    
+                    <div class="form-field">
+                        <div class="section-title">
+                            <span class="section-number">14</span> Observations
+                        </div>
+                        <textarea name="b_observations"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section circumstances">
+                    <div class="circumstances-title">
+                        <span class="section-number">12</span> Circonstances
+                    </div>
+                    
+                    <div class="circumstance-column">
+                        <p>Mettre une croix (x) dans
+                        chacune des cases utiles
+                        pour préciser le croquis</p>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">1</div>
+                            <div class="circumstance-text">en stationnement</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_1">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">2</div>
+                            <div class="circumstance-text">quittait un stationnement</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_2">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">3</div>
+                            <div class="circumstance-text">prenait un stationnement</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_3">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">4</div>
+                            <div class="circumstance-text">sortait d'un parking, d'un lieu privé, d'un chemin de terre</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_4">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">5</div>
+                            <div class="circumstance-text">s'engageait dans un parking, un lieu privé, un chemin de terre</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_5">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">6</div>
+                            <div class="circumstance-text">s'engageait sur une place à sens giratoire</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_6">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">7</div>
+                            <div class="circumstance-text">roulait sur une place à sens giratoire</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_7">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">8</div>
+                            <div class="circumstance-text">heurtait à l'arrière, en roulant dans le même sens et sur une même file</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_8">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">9</div>
+                            <div class="circumstance-text">roulait dans le même sens et sur une file différente</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_9">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">10</div>
+                            <div class="circumstance-text">changeait de file</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_10">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">11</div>
+                            <div class="circumstance-text">doublait</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_11">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">12</div>
+                            <div class="circumstance-text">virait à droite</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_12">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">13</div>
+                            <div class="circumstance-text">virait à gauche</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_13">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">14</div>
+                            <div class="circumstance-text">reculait</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_14">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">15</div>
+                            <div class="circumstance-text">empiétait sur la partie de chaussée réservée à la circulation en sens inverse</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_15">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">16</div>
+                            <div class="circumstance-text">venait de droite (à un carrefour)</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_16">
+                            </div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-number">17</div>
+                            <div class="circumstance-text">n'avait pas observé le signal de priorité</div>
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="a_circ_17">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="circumstance-column">
+                        <p>Mettre une croix (x) dans
+                        chacune des cases utiles
+                        pour préciser le croquis</p>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_1">
+                            </div>
+                            <div class="circumstance-text">en stationnement</div>
+                            <div class="circumstance-number">1</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_2">
+                            </div>
+                            <div class="circumstance-text">quittait un stationnement</div>
+                            <div class="circumstance-number">2</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_3">
+                            </div>
+                            <div class="circumstance-text">prenait un stationnement</div>
+                            <div class="circumstance-number">3</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_4">
+                            </div>
+                            <div class="circumstance-text">sortait d'un parking, d'un lieu privé, d'un chemin de terre</div>
+                            <div class="circumstance-number">4</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_5">
+                            </div>
+                            <div class="circumstance-text">s'engageait dans un parking, un lieu privé, un chemin de terre</div>
+                            <div class="circumstance-number">5</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_6">
+                            </div>
+                            <div class="circumstance-text">s'engageait sur une place à sens giratoire</div>
+                            <div class="circumstance-number">6</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_7">
+                            </div>
+                            <div class="circumstance-text">roulait sur une place à sens giratoire</div>
+                            <div class="circumstance-number">7</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_8">
+                            </div>
+                            <div class="circumstance-text">heurtait à l'arrière, en roulant dans le même sens et sur une même file</div>
+                            <div class="circumstance-number">8</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_9">
+                            </div>
+                            <div class="circumstance-text">roulait dans le même sens et sur une file différente</div>
+                            <div class="circumstance-number">9</div>
+                        </div>
+                        
+                        <div class="circumstance-item">
+                            <div class="circumstance-input">
+                                <input type="checkbox" name="b_circ_10">
+                            </div>
+                            <div class="circumstance-text">changeait de file</div>
+                            <div class="circumstance-number">10</div>
+                        </div>
+                    </div>
+
+    
+  </body>
+</html>
